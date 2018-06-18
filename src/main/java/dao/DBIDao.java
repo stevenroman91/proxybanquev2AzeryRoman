@@ -179,7 +179,7 @@ public class DBIDao extends DaoUtil implements IDao {
 					cn = SeConnecter();
 
 					// Etape 3: Creer une requete
-					String sql = "SELECT * FROM clients where login = ?";
+					String sql = "SELECT * FROM conseillerclientele where login = ?";
 					prepst = cn.prepareStatement(sql);
 					prepst.setString(1, login);
 					// Etape 4
