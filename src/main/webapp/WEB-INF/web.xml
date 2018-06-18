@@ -1,6 +1,3 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
 	<servlet>
@@ -23,6 +20,10 @@
 		<servlet-name>VirementServlet</servlet-name>
 		<servlet-class>presentation.VirementServlet</servlet-class>
 	</servlet>
+	<filter>
+		<filter-name>mon.filtre.http</filter-name>
+		<filter-class>presentation.MonFiltreHttp</filter-class>
+	</filter>
 
 	<servlet-mapping>
 		<servlet-name>AuthentificationServlet</servlet-name>
@@ -44,4 +45,11 @@
 		<servlet-name>VirementServlet</servlet-name>
 		<url-pattern>/virement</url-pattern>
 	</servlet-mapping>
+	<filter-mapping>
+		<filter-name>mon.filtre.http</filter-name>
+		<url-pattern>/accueil</url-pattern>
+		<url-pattern>/editclient</url-pattern>
+		<url-pattern>/comptesclient</url-pattern>
+		<url-pattern>/virement</url-pattern>
+	</filter-mapping>
 </web-app>

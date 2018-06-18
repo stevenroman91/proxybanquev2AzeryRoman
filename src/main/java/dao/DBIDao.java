@@ -63,7 +63,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			st.setString(2, prenom);
 			st.setString(3, email);
 			st.setInt(4, telephone);
-			st.setInt(5, c.getIdClient());
+			st.setInt(5, c.getIdPersonne());
 			st.executeUpdate();
 			st.close();
 
@@ -72,7 +72,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			st.setString(1, c.getAdresse().getAdresse());
 			st.setInt(2, c.getAdresse().getCodePostal());
 			st.setString(3, c.getAdresse().getVille());
-			st.setInt(4, c.getIdClient());
+			st.setInt(4, c.getIdPersonne());
 			st.executeUpdate();
 
 			// Etape 4
@@ -146,7 +146,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			String prenom = rs.getString(3);
 			String email = rs.getString(4);
 			Client c = new Client(nom, prenom, email);
-			c.setIdClient(i);
+			c.setIdPersonne(i);
 			return c;
 
 		} catch (SQLException | ClassNotFoundException e) {
@@ -192,7 +192,7 @@ public class DBIDao extends DaoUtil implements IDao {
 					//String login = rs.getString(4);
 					String password = rs.getString(4);
 					ConseillerClientele cc = new ConseillerClientele(nom, prenom, login,password);
-					cc.setIdConseillerClientele(i);
+					cc.setIdPersonne(i);
 					return cc;
 
 				} catch (SQLException | ClassNotFoundException e) {
@@ -237,7 +237,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				String prenom = rs.getString(3);
 				String email = rs.getString(4);
 				Client c = new Client(nom, prenom, email);
-				c.setIdClient(i);
+				c.setIdPersonne(i);
 				list.add(c);
 			} // on aurait pu faire un while
 
@@ -278,7 +278,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			// Etape 3: Creer une requete
 			String sql = "SELECT * FROM clients WHERE clients.idConseillerClientele = ?";
 			prepst = cn.prepareStatement(sql);
-			prepst.setInt(1, cc.getIdConseillerClientele());
+			prepst.setInt(1, cc.getIdPersonne());
 			// Etape 4
 			rs = prepst.executeQuery();
 			cn.commit();
@@ -288,7 +288,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				String prenom = rs.getString(3);
 				String email = rs.getString(4);
 				Client c = new Client(nom, prenom, email);
-				c.setIdClient(i);
+				c.setIdPersonne(i);
 				list.add(c);
 			} // on aurait pu faire un while
 
@@ -328,7 +328,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			// Etape 3: Creer une requete
 			String sql = "SELECT * FROM compteCourant WHERE compteCourant.idClient = ?";
 			prepst = cn.prepareStatement(sql);
-			prepst.setInt(1, c.getIdClient());
+			prepst.setInt(1, c.getIdPersonne());
 			// Etape 4
 			rs = prepst.executeQuery();
 			cn.commit();
@@ -346,7 +346,7 @@ public class DBIDao extends DaoUtil implements IDao {
 
 			String sql1 = "SELECT * FROM compteEpargne WHERE compteEpargne.idClient = ?";
 			prepst1 = cn.prepareStatement(sql1);
-			prepst1.setInt(1, c.getIdClient());
+			prepst1.setInt(1, c.getIdPersonne());
 			rs = prepst1.executeQuery();
 			cn.commit();
 
@@ -419,7 +419,7 @@ public class DBIDao extends DaoUtil implements IDao {
 
 				String sql = "SELECT solde from compteCourant WHERE compteCourant.idClient = ?";
 				st = cn.prepareStatement(sql);
-				st.setDouble(1, c1.getTitulaireduCompte().getIdClient());
+				st.setDouble(1, c1.getTitulaireduCompte().getIdPersonne());
 				rs = st.executeQuery();
 				cn.commit();
 
@@ -435,7 +435,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				String sql1 = "UPDATE compteCourant SET solde = ? WHERE compteCourant.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c1.getSolde() - mt);
-				st.setInt(2, c1.getTitulaireduCompte().getIdClient());
+				st.setInt(2, c1.getTitulaireduCompte().getIdPersonne());
 				st.executeUpdate();
 				cn.commit();
 
@@ -450,7 +450,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				String sql1 = "UPDATE compteEpargne SET solde = ? WHERE compteEpargne.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c1.getSolde() - mt);
-				st.setInt(2, c1.getTitulaireduCompte().getIdClient());
+				st.setInt(2, c1.getTitulaireduCompte().getIdPersonne());
 				st.executeUpdate();
 				cn.commit();
 
@@ -464,7 +464,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				String sql1 = "UPDATE compteCourant SET solde = ? WHERE compteCourant.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c2.getSolde() + mt);
-				st.setInt(2, c2.getTitulaireduCompte().getIdClient());
+				st.setInt(2, c2.getTitulaireduCompte().getIdPersonne());
 				st.executeUpdate();
 				cn.commit();
 
@@ -475,7 +475,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				String sql1 = "UPDATE compteEpargne SET solde = ? WHERE compteEpargne.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c2.getSolde() + mt);
-				st.setInt(2, c2.getTitulaireduCompte().getIdClient());
+				st.setInt(2, c2.getTitulaireduCompte().getIdPersonne());
 				st.executeUpdate();
 				cn.commit();
 

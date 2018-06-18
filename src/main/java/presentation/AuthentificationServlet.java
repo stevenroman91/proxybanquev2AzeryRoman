@@ -32,8 +32,10 @@ public class AuthentificationServlet extends HttpServlet {
 			boolean boo =service.VerifierConnexion(login, password);
 			
 			if(boo) {
+				request.getSession().setAttribute("login", login);
 				response.sendRedirect(this.getServletContext().getContextPath() + "/accueil");
 			}else {
+				request.getSession().setAttribute("login", null);
 				response.sendRedirect(this.getServletContext().getContextPath() + "/authentification");
 			}
 			
