@@ -3,4 +3,29 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+	<servlet>
+		<servlet-name>AuthentificationServlet</servlet-name>
+		<servlet-class>presentation.AuthentificationServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AccueilServlet</servlet-name>
+		<servlet-class>presentation.AccueilServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>EditClientServlet</servlet-name>
+		<servlet-class>presentation.EditClientServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AuthentificationServlet</servlet-name>
+		<url-pattern>/authentification</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AccueilServlet</servlet-name>
+		<url-pattern>/accueil</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditClientServlet</servlet-name>
+		<url-pattern>/editclient</url-pattern>
+	</servlet-mapping>
 </web-app>
