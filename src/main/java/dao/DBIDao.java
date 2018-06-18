@@ -166,6 +166,51 @@ public class DBIDao extends DaoUtil implements IDao {
 		return null;
 
 	}
+	
+	@Override
+	public ConseillerClientele FindByLogin(String login) {
+		// TODO Auto-generated method stub
+				Connection cn = null;
+				ResultSet rs = null;
+				PreparedStatement prepst = null;
+
+				try {
+
+					cn = SeConnecter();
+
+					// Etape 3: Creer une requete
+					String sql = "SELECT * FROM clients where login = ?";
+					prepst = cn.prepareStatement(sql);
+					prepst.setString(1, login);
+					// Etape 4
+					rs = prepst.executeQuery(sql);
+					cn.commit();
+					rs.next(); // on aurait pu faire un while
+					int i = rs.getInt(1);
+					String nom = rs.getString(2);
+					String prenom = rs.getString(3);
+					//String login = rs.getString(4);
+					String password = rs.getString(4);
+					ConseillerClientele cc = new ConseillerClientele(nom, prenom, login,password);
+					cc.setIdConseillerClientele(i);
+					return cc;
+
+				} catch (SQLException | ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					try {
+						cn.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} finally {
+
+					SeDeconnecter(cn, prepst, rs);
+
+				}
+				return null;
+	}
 
 	@Override
 	public List<Client> FindAll() {
@@ -452,6 +497,8 @@ public class DBIDao extends DaoUtil implements IDao {
 		}
 
 	}
+
+	
 
 	
 }

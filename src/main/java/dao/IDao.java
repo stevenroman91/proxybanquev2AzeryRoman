@@ -14,6 +14,7 @@ public interface IDao {
 	public void update(Client c, String nom, String prenom, String email, int telephone, Adresse adresse );
 	public void delete(int id);
 	public Client FindById(int id);
+	public ConseillerClientele FindByLogin(String login);
 	
 	public List<Client> FindAll();
 	public List<Client> FindClients(ConseillerClientele cc);

@@ -13,8 +13,10 @@ public interface ClientService {
 	public Client getValidatedClient(int id);
 	public List<Client> getAllClients();
 	public void deleteClient(int id);
+	public ConseillerClientele getCCByLogin(String login);
+	public boolean VerifierConnexion(String login, String password) throws ErreurLogin;
 	
-	public void updateClient(Client c, String nom, String prenom, String email, Adresse adresse );
+	public void updateClient(Client c, String nom, String prenom, String email, int telephone, Adresse adresse );
 	public List<Client> getClients(ConseillerClientele cc); 
 	public List<Compte> getComptes(Client c);
 	public List<Compte> getdAllComptes(ConseillerClientele cc);

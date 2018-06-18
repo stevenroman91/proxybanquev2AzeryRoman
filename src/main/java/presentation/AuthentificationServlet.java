@@ -7,10 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ConseillerClientele;
+import service.ClientService;
+import service.ClientServiceImpl;
+import service.ErreurLogin;
+
 public class AuthentificationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
+	ClientService service = new ClientServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -20,11 +26,22 @@ public class AuthentificationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//final String login = request.getParameter("login");
-		//final String password = request.getParameter("pwd");
-		//ArticleService.getSingleton().create(title, description);
-		//response.sendRedirect(this.getServletContext().getContextPath() + "/accueil");
-		this.doGet(request, response);
+		final String login = request.getParameter("login");
+		final String password = request.getParameter("pwd");
+		try {
+			boolean boo =service.VerifierConnexion(login, password);
+			
+			if(boo) {
+				response.sendRedirect(this.getServletContext().getContextPath() + "/accueil");
+			}else {
+				response.sendRedirect(this.getServletContext().getContextPath() + "/authentification");
+			}
+			
+		} catch (ErreurLogin e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

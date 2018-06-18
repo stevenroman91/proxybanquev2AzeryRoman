@@ -39,10 +39,29 @@ public class ClientServiceImpl implements ClientService {
 		dao.delete(id);
 	}
 
+
 	@Override
-	public void updateClient(Client c, String nom, String prenom, String email, Adresse adresse) {
+	public ConseillerClientele getCCByLogin(String login) {
+		return dao.FindByLogin(login);
+	}
+	
+	@Override
+	public boolean VerifierConnexion(String login, String password) throws ErreurLogin {
+		
+		ConseillerClientele cc = this.getCCByLogin(login);
+		if(cc==null) throw new ErreurLogin("Le login que vous avez rentré n'est pas valide");
+		
+		if(cc.getLogin().equals(login) && cc.getPassword().equals(password)) {
+			return true;
+		}else {
+			return false;
+		}		
+	}
+	
+	@Override
+	public void updateClient(Client c, String nom, String prenom, String email, int telephone, Adresse adresse) {
 		// TODO Auto-generated method stub
-		dao.update(c, nom, prenom, email, adresse);
+		dao.update(c, nom, prenom, email, telephone, adresse);
 	}
 
 	@Override
@@ -75,6 +94,5 @@ public class ClientServiceImpl implements ClientService {
 		
 	}
 
-	
 
 }
