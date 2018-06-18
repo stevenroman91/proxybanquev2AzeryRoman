@@ -179,7 +179,8 @@ public class DBIDao extends DaoUtil implements IDao {
 					cn = SeConnecter();
 
 					// Etape 3: Creer une requete
-					String sql = "SELECT * FROM conseillerclientele where login = ?";
+					String sql = "SELECT * FROM 'conseillerclientele' where 'login' = '?'";
+					System.out.println(sql);
 					prepst = cn.prepareStatement(sql);
 					prepst.setString(1, login);
 					// Etape 4
@@ -190,7 +191,7 @@ public class DBIDao extends DaoUtil implements IDao {
 					String nom = rs.getString(2);
 					String prenom = rs.getString(3);
 					//String login = rs.getString(4);
-					String password = rs.getString(4);
+					String password = rs.getString(5);
 					ConseillerClientele cc = new ConseillerClientele(nom, prenom, login,password);
 					cc.setIdPersonne(i);
 					return cc;
@@ -226,7 +227,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM clients";
+			String sql = "SELECT * FROM client";
 			prepst = cn.prepareStatement(sql);
 			// Etape 4
 			rs = prepst.executeQuery();

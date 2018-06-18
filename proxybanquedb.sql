@@ -59,24 +59,6 @@ CREATE TABLE `compteEpargne` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-ALTER TABLE `client`
-  ADD CONSTRAINT `fk_conseiller` FOREIGN KEY (`idConseillerClientele`) REFERENCES `conseillerClientele` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_adresse` FOREIGN KEY (`idAdresse`) REFERENCES `adresses` (`idAdresse`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-
-ALTER TABLE `compteCourant`
-  ADD CONSTRAINT `fk_clientcc` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
- 
-
-
-ALTER TABLE `compteEpargne`
-  ADD CONSTRAINT `fk_clientce` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-
-
 INSERT INTO `conseillerClientele` (`nom`, `prenom`, `login`, `password`) VALUES
 ('ZIDANE', 'Zinedine', 'zizou', 67891),
 ('RONALDO', 'Cristiano', 'cr7', 12345),
@@ -120,3 +102,18 @@ INSERT INTO `compteEpargne` (`numeroDeCompte`, `solde`, `dateOuvertureCompte`, `
 ('69854725', '80','29/04/2015', 2),
 ('69574250', '280', '22/11/2008', 6),
 ('32579410', '30', '10/02/2014', 4);
+
+ALTER TABLE `client`
+  ADD CONSTRAINT `fk_conseiller` FOREIGN KEY (`idConseillerClientele`) REFERENCES `conseillerClientele` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_adresse` FOREIGN KEY (`idAdresse`) REFERENCES `adresses` (`idAdresse`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+
+ALTER TABLE `compteCourant`
+  ADD CONSTRAINT `fk_clientcc` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ 
+
+
+ALTER TABLE `compteEpargne`
+  ADD CONSTRAINT `fk_clientce` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
