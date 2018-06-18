@@ -11,7 +11,7 @@ import service.MontantNegatifException;
 public interface IDao {
 	
 	public void save(Client c);
-	public void update(Client c, String nom, String prenom, String email, Adresse adresse );
+	public void update(Client c, String nom, String prenom, String email, int telephone, Adresse adresse );
 	public void delete(int id);
 	public Client FindById(int id);
 	

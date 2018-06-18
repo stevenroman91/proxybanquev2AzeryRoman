@@ -49,7 +49,7 @@ public class DBIDao extends DaoUtil implements IDao {
 	}
 
 	@Override
-	public void update(Client c, String nom, String prenom, String email, Adresse adresse) {
+	public void update(Client c, String nom, String prenom, String email, int telephone, Adresse adresse) {
 		// Information d'acces a la base de donnees
 		Connection cn = null;
 		PreparedStatement st = null;
@@ -57,13 +57,15 @@ public class DBIDao extends DaoUtil implements IDao {
 		try {
 			cn = SeConnecter();
 			// Etape 3: Creer une requete
-			String sql = "UPDATE clients SET nom = ?, prenom = ?, email = ?,  WHERE idClient = ? ";
+			String sql = "UPDATE clients SET nom = ?, prenom = ?, email = ?, telephone = ?,  WHERE idClient = ? ";
 			st = cn.prepareStatement(sql);
 			st.setString(1, nom);
 			st.setString(2, prenom);
 			st.setString(3, email);
-			st.setInt(4, c.getIdClient());
+			st.setInt(4, telephone);
+			st.setInt(5, c.getIdClient());
 			st.executeUpdate();
+			st.close();
 
 			String sql1 = "UPDATE adresses SET adresse = ?, codePostal = ?, ville = ?,  WHERE adresses.idClient = ? ";
 			st = cn.prepareStatement(sql1);
@@ -98,7 +100,7 @@ public class DBIDao extends DaoUtil implements IDao {
 		try {
 			cn = SeConnecter();
 			// Etape 3: Creer une requete
-			String sql = "delete from clients where id = ? ";
+			String sql = "delete from clients where idClient = ? ";
 			st = cn.prepareStatement(sql);
 			st.setInt(1, id);
 			// Etape 4
@@ -132,7 +134,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM clients where id = ?";
+			String sql = "SELECT * FROM clients where idClient = ?";
 			prepst = cn.prepareStatement(sql);
 			prepst.setInt(1, id);
 			// Etape 4
@@ -229,7 +231,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM clients WHERE clients.idConseillerCliente = ?";
+			String sql = "SELECT * FROM clients WHERE clients.idConseillerClientele = ?";
 			prepst = cn.prepareStatement(sql);
 			prepst.setInt(1, cc.getIdConseillerClientele());
 			// Etape 4
@@ -279,7 +281,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM comptesCourants WHERE comptesCourants.idClient = ?";
+			String sql = "SELECT * FROM compteCourant WHERE compteCourant.idClient = ?";
 			prepst = cn.prepareStatement(sql);
 			prepst.setInt(1, c.getIdClient());
 			// Etape 4
@@ -297,7 +299,7 @@ public class DBIDao extends DaoUtil implements IDao {
 				list.add(cl);
 			} // on aurait pu faire un while
 
-			String sql1 = "SELECT * FROM comptesEpargnes WHERE comptesEpargnes.idClient = ?";
+			String sql1 = "SELECT * FROM compteEpargne WHERE compteEpargne.idClient = ?";
 			prepst1 = cn.prepareStatement(sql1);
 			prepst1.setInt(1, c.getIdClient());
 			rs = prepst1.executeQuery();
@@ -356,7 +358,7 @@ public class DBIDao extends DaoUtil implements IDao {
 
 	@Override
 	public void virementCC(Compte c1, Compte c2, double mt) throws MontantNegatifException {
-		if(mt<0) throw new MontantNegatifException("Le montant que vous avez rentr� est n�gatif");
+		if(mt<0) throw new MontantNegatifException("Le montant que vous avez rentré est négatif");
 
 		Connection cn = null;
 		PreparedStatement st = null;
@@ -370,7 +372,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			// Avant de d�biter le compte il faut qu'on teste quel type de compte s'est
 			if (c1.isTypeDeCompte() == false) {
 
-				String sql = "SELECT solde from comptesCourants WHERE comptesCourants.idClient = ?";
+				String sql = "SELECT solde from compteCourant WHERE compteCourant.idClient = ?";
 				st = cn.prepareStatement(sql);
 				st.setDouble(1, c1.getTitulaireduCompte().getIdClient());
 				rs = st.executeQuery();
@@ -383,9 +385,9 @@ public class DBIDao extends DaoUtil implements IDao {
 				}
 
 				if (c1.getSolde() - mt < -decouvert) throw new MontantNegatifException(
-							"Vouz ne pouvez pas effectuer ce virement car il n'y a pas assez de fonds sur le compte � debiter");
+							"Vouz ne pouvez pas effectuer ce virement car il n'y a pas assez de fonds sur le compte à debiter");
 
-				String sql1 = "UPDATE comptesCourants SET solde = ? WHERE comptesCourants.idClient = ? ";
+				String sql1 = "UPDATE compteCourant SET solde = ? WHERE compteCourant.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c1.getSolde() - mt);
 				st.setInt(2, c1.getTitulaireduCompte().getIdClient());
@@ -400,7 +402,7 @@ public class DBIDao extends DaoUtil implements IDao {
 					throw new MontantNegatifException(
 							"Vouz ne pouvez pas changer votre decouvert car votre solde est inferieur au decouvert que vous voulez rentrer");
 
-				String sql1 = "UPDATE comptesEpargnes SET solde = ? WHERE comptesEpargnes.idClient = ? ";
+				String sql1 = "UPDATE compteEpargne SET solde = ? WHERE compteEpargne.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c1.getSolde() - mt);
 				st.setInt(2, c1.getTitulaireduCompte().getIdClient());
@@ -414,7 +416,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			
 			if (c1.isTypeDeCompte() == false) {
 
-				String sql1 = "UPDATE comptesCourants SET solde = ? WHERE comptesCourants.idClient = ? ";
+				String sql1 = "UPDATE compteCourant SET solde = ? WHERE compteCourant.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c2.getSolde() + mt);
 				st.setInt(2, c2.getTitulaireduCompte().getIdClient());
@@ -425,7 +427,7 @@ public class DBIDao extends DaoUtil implements IDao {
 
 			if (c1.isTypeDeCompte() == true) {
 
-				String sql1 = "UPDATE comptesEpargnes SET solde = ? WHERE comptesEpargnes.idClient = ? ";
+				String sql1 = "UPDATE compteEpargne SET solde = ? WHERE compteEpargne.idClient = ? ";
 				st = cn.prepareStatement(sql1);
 				st.setDouble(1, c2.getSolde() + mt);
 				st.setInt(2, c2.getTitulaireduCompte().getIdClient());
