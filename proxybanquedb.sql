@@ -1,15 +1,9 @@
---
--- Base de données :  `proxibanquedb`
---
+
 CREATE DATABASE IF NOT EXISTS `proxibanquedb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `proxibanquedb`;
 
 
--- --------------------------------------------------------
 
---
--- Structure de la table `conseillerClientele`
---
 
 CREATE TABLE `conseillerClientele` (
   `idPersonne` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -19,11 +13,7 @@ CREATE TABLE `conseillerClientele` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `client`
---
 
 CREATE TABLE `client` (
   `idPersonne` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -35,11 +25,7 @@ CREATE TABLE `client` (
   `idConseillerClientele` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `adresse`
---
 
 CREATE TABLE `adresses` (
   `idAdresse` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -49,11 +35,7 @@ CREATE TABLE `adresses` (
   `idClient` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `CompteCourant`
---
 
 CREATE TABLE `compteCourant` (
   `numeroDeCompte` int(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -65,11 +47,7 @@ CREATE TABLE `compteCourant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------
 
---
--- Structure de la table `CompteEpargne`
---
 
 CREATE TABLE `compteEpargne` (
   `numeroDeCompte` int(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -81,55 +59,30 @@ CREATE TABLE `compteEpargne` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------
--- Contraintes pour les tables 
--- --------------------------------------------------------
 
---
--- Contraintes pour la table `clients
-
---
 ALTER TABLE `client`
   ADD CONSTRAINT `fk_conseiller` FOREIGN KEY (`idConseillerClientele`) REFERENCES `conseillerClientele` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_adresse` FOREIGN KEY (`idAdresse`) REFERENCES `adresses` (`idAdresse`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
--- Contraintes pour la table `adresse`
---
-ALTER TABLE `adresses`
-  ADD CONSTRAINT `fk_client` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-
---
--- Contraintes pour la table `compteCourant`
---
 ALTER TABLE `compteCourant`
-  ADD CONSTRAINT `fk_client` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_clientcc` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
  
 
---
--- Contraintes pour la table `compteEpargne`
---
+
 ALTER TABLE `compteEpargne`
-  ADD CONSTRAINT `fk_client` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_clientce` FOREIGN KEY (`idClient`) REFERENCES `client` (`idPersonne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
-----------------------------------------------------------------
--- Contenu des tables
-----------------------------------------------------------------
 
---
--- contenu de la table conseillerClientele
---
 
 INSERT INTO `conseillerClientele` (`nom`, `prenom`, `login`, `password`) VALUES
 ('ZIDANE', 'Zinedine', 'zizou', 67891),
 ('RONALDO', 'Cristiano', 'cr7', 12345),
 ('MARADONA', 'Diego', 'arg', 523487);
 
---
--- contenu de la table Clients
---
+
 
 INSERT INTO `client` (`nom`, `prenom`, `email`, `telephone`, `idAdresse`, `idConseillerClientele`) VALUES
 ('ROMAN', 'Steven', 'steven@gmail.com', 0769553274, 5, 2),
@@ -140,9 +93,6 @@ INSERT INTO `client` (`nom`, `prenom`, `email`, `telephone`, `idAdresse`, `idCon
 ('LENOIR', 'Fabien', 'fabien@orange.com', 0714638972, 6, 2),
 ('VOLATRON', 'Antoine', 'antoine@bbox.fr', 0618192456, 7, 2);
 
---
--- contenu de la table Adresse
---
 
 INSERT INTO `adresses` (`adresse`, `codePostal`, `ville`, `idClient`) VALUES
 ('13 rue gambetta', '75003', 'Paris', 1),
@@ -154,9 +104,6 @@ INSERT INTO `adresses` (`adresse`, `codePostal`, `ville`, `idClient`) VALUES
 ('136 rue des riches', '75000', 'Paris', 7);
 
 
---
--- contenu de la table compteCourant
---
 
 INSERT INTO `compteCourant` (`numeroDeCompte`, `solde`, `dateOuvertureCompte`, `idClient`) VALUES
 ('3256940', '200', '10/02/2014', 1),
@@ -167,9 +114,6 @@ INSERT INTO `compteCourant` (`numeroDeCompte`, `solde`, `dateOuvertureCompte`, `
 ('3696945', '100', '22/11/2008', 6);
 
 
---
--- contenu de la table compteEpargne
---
 
 INSERT INTO `compteEpargne` (`numeroDeCompte`, `solde`, `dateOuvertureCompte`, `idClient`) VALUES
 ('56844126', '10','10/02/2014', 1),
