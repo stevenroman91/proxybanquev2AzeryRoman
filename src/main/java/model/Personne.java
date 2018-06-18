@@ -4,8 +4,8 @@ public abstract class  Personne {
 	
 	//Attribus
 	
-	protected int idPersonne;
-	protected String prenom, nom;
+	private int idPersonne;
+	private String prenom, nom;
 	
 	// Constructeurs
 	
@@ -13,8 +13,9 @@ public abstract class  Personne {
 		
 	}
 	
-	public Personne(String prenom, String nom) {
+	public Personne(int idPersonne, String prenom, String nom) {
 		super();
+		this.idPersonne = idPersonne;
 		this.prenom = prenom;
 		this.nom = nom;
 	}

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * 
@@ -87,7 +85,7 @@ public abstract class Compte {
 	}
 	/**
 	 * 
-	 * @param carte carte associée au compte
+	 * @param carte carte associï¿½e au compte
 	 */
 	public void setCarte(CarteBancaire carte) {
 		this.carte = carte;

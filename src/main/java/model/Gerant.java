@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+
 
 /**
  * 
@@ -34,8 +34,8 @@ public class Gerant extends Personne {
 	 * @param idGerant identifiant du conseiller
 	 */
 	public Gerant(String nom, String prenom, int idGerant) {
-		super.nom = nom;
-		super.prenom = prenom;
+		super.setNom(nom);
+		super.setPrenom(prenom);
 		this.idGerant = idGerant;
 	}
 	

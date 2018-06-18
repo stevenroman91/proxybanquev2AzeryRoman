@@ -4,18 +4,18 @@ package model;
  * 
  * @author Badr Azeri et Steven Roman
  * 
- * Cette Classe regroupe tous les elements necessaires à constituer une adresse,
- * Un numéro de rue, une rue, un code postal et une ville.
+ * Cette Classe regroupe tous les elements necessaires ï¿½ constituer une adresse,
+ * Un numï¿½ro de rue, une rue, un code postal et une ville.
  *
  */
 
 public class Adresse {
 	
 	//---------- Attributs de la Classe Adresse 
-	
-	protected String adresse;
-	protected int codePostal;
-	protected String ville;
+	private int idAdresse;
+	private String adresse;
+	private int codePostal;
+	private String ville;
 	
 	//---------- Constructeurs de la Classe Adresse
 	
@@ -30,14 +30,29 @@ public class Adresse {
 	 * @param ville la ville
 	 */
 	
-	public Adresse(String adresse, int codePostal, String ville) {
+	public Adresse(int idAdresse, String adresse, int codePostal, String ville) {
 		super();
+		this.idAdresse = idAdresse;
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
 	
 	//---------- Getters & Setters
+	
+	
+	public int getIdAdresse() {
+		return idAdresse;
+	}
+	
+	/**
+	 * 
+	 * @param idAdresse identifant adresse
+	 */
+
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
+	}
 	
 	public String getAdresse() {
 		return adresse;
@@ -76,6 +91,7 @@ public class Adresse {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+
 	
 	//---------- Reecriture de la methode toString
 	
@@ -85,7 +101,8 @@ public class Adresse {
 	
 	@Override
 	public String toString() {
-		return "Adresse:" + adresse + "," + codePostal + "," + ville;
+		return "Adresse [IdAdresse=" + idAdresse + ", adresse=" + adresse + ", codePostal=" + codePostal + ", ville="
+				+ ville + "]";
 	}
 	
 

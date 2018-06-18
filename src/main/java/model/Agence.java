@@ -1,17 +1,13 @@
 package model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+
 
 /**
  * 
  * @author Badr Azeri et Steven Roman
  *
- * Cette classe agence est caracterisée par son idAgence et sa date de creation
- * Chaque agence a un gérant et une adresse
+ * Cette classe agence est caracterisï¿½e par son idAgence et sa date de creation
+ * Chaque agence a un gï¿½rant et une adresse
  */
 
 public class Agence {
@@ -31,7 +27,7 @@ public class Agence {
 	
 	/**
 	 * 
-	 * @param idAgence identifiant de l'agence qui doit être une liste de caractères alpha numeriques avec 5 caracteres.
+	 * @param idAgence identifiant de l'agence qui doit ï¿½tre une liste de caractï¿½res alpha numeriques avec 5 caracteres.
 	 * @param dateF date de creation de l'agence
 	 */
 	public Agence(String idAgence, String dateF) {
