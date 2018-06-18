@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="<c:url value = "/css/bootstrap.min.css"></c:url>">
 <link rel="stylesheet" href="<c:url value = "/css/style.css"></c:url>">
 <script src="<c:url value = "/js/bootstrap.min.js"></c:url>"></script>
-<title>ProxyBanque</title>
 </head>
 <body>
 	<!-- Banner -->

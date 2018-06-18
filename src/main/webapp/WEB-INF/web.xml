@@ -15,6 +15,14 @@
 		<servlet-name>EditClientServlet</servlet-name>
 		<servlet-class>presentation.EditClientServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ComptesClientServlet</servlet-name>
+		<servlet-class>presentation.ComptesClientServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>VirementServlet</servlet-name>
+		<servlet-class>presentation.VirementServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AuthentificationServlet</servlet-name>
@@ -27,5 +35,13 @@
 	<servlet-mapping>
 		<servlet-name>EditClientServlet</servlet-name>
 		<url-pattern>/editclient</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ComptesClientServlet</servlet-name>
+		<url-pattern>/comptesclient</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>VirementServlet</servlet-name>
+		<url-pattern>/virement</url-pattern>
 	</servlet-mapping>
 </web-app>
