@@ -32,6 +32,6 @@ public class VirementServlet extends HttpServlet {
 		final double mt = Double.parseDouble(request.getParameter("montantVirement"));
 		
 		service.virementCompteaCompte(service.getCompteByNbCompte(nbCD), service.getCompteByNbCompte(nbCC), mt);
-		response.sendRedirect(this.getServletContext().getContextPath() + "/accueil");
+		response.sendRedirect(this.getServletContext().getContextPath() + "/virement");
 	}
 }
