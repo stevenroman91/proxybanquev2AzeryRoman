@@ -112,6 +112,12 @@ public class Client extends Personne {
 		this.placements = placements;
 	}
 
+	@Override
+	public String toString() {
+		return "Client [getIdPersonne= "+getIdPersonne()+ ", nom =" +getNom() + ", prenom =" + getPrenom()+ ", telephone=" + telephone + ", adresse=" + adresse + ", email=" + email + ", typeDeClient="
+				+ typeDeClient + ", conseiller=" + conseiller + ", comptes=" + comptes + ", placements=" + placements+ "]";
+	}
+
 	
 	
 	//---------- Reecriture de la methode toString
@@ -121,12 +127,6 @@ public class Client extends Personne {
 	 * @see java.lang.Object#toString()
 	 */
 	
-	@Override
-	public String toString() {
-		return "Client [telephone=" + telephone + ", adresse=" + adresse + ", email=" + email + ", typeDeClient="
-				+ typeDeClient + ", conseiller=" + conseiller + ", comptes=" + comptes + ", placements=" + placements
-				+ "]";
-	}
 	
 
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 public class MonFiltreHttp implements Filter {
 
-	public static final String SESSION_AUTH = "auth";
+	public static final String SESSION_AUTH = "login";
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,7 +29,7 @@ public class MonFiltreHttp implements Filter {
 		if(session.getAttribute(SESSION_AUTH)!=null) {
 			chain.doFilter(request, response);
 		}else {
-			((HttpServletResponse)response).sendRedirect("/WEB-INF/views/authentification.jsp");
+			((HttpServletResponse)response).sendRedirect(((HttpServletRequest) request).getContextPath()+"/authentification");
 			//sendError
 		}
 		

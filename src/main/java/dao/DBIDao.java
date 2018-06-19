@@ -179,10 +179,10 @@ public class DBIDao extends DaoUtil implements IDao {
 					cn = SeConnecter();
 
 					// Etape 3: Creer une requete
-					String sql = "SELECT * FROM 'conseillerclientele' where 'login' = '?'";
+					String sql = "SELECT * FROM conseillerclientele where login = '" + login + "'";
 					System.out.println(sql);
 					prepst = cn.prepareStatement(sql);
-					prepst.setString(1, login);
+					//prepst.setString(1, login);
 					// Etape 4
 					rs = prepst.executeQuery(sql);
 					cn.commit();
@@ -277,7 +277,7 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM clients WHERE clients.idConseillerClientele = ?";
+			String sql = "SELECT * FROM client WHERE client.idConseillerClientele = ?";
 			prepst = cn.prepareStatement(sql);
 			prepst.setInt(1, cc.getIdPersonne());
 			// Etape 4

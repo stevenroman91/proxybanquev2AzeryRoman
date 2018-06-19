@@ -86,17 +86,17 @@
 
 		  <tbody>
 
-		 	<c:forEach var="Client" items="${listeClient}">
+		 	<c:forEach var="client" items="${listeClient}">
 
 				<tr>
 
-					<th scope="row"><c:out value="${Client.idClient}"/></th>
+					<td scope="row"><c:out value="${client.idPersonne}"/></td>
 
-		     	 	<th><c:out value="${Client.nom}"/></th>
+		     	 	<td><c:out value="${client.nom}"/></td>
 
-		      		<th><c:out value="${Client.prenom}"/></th>
+		      		<td><c:out value="${client.prenom}"/></td>
 
-		      		<th><c:out value="${Client.mail}"/></th>
+		      		<td><c:out value="${client.email}"/></td>
 
 				</tr>
 
@@ -112,7 +112,7 @@
 
 	<br>
 
-		<form action="modifierClient" method="Post" class="form-inline form-group container">
+		<form method="Post" class="form-inline form-group container">
 
    				<label for="idClient">ID Client </label>
 
@@ -120,7 +120,7 @@
 
 			    	<c:forEach var="Client" items="${listeClient}">
 
-							<option><c:out value="${Client.idClient}"/></option>
+							<option><c:out value="${Client.idPersonne}"/></option>
 
 					</c:forEach>
 
@@ -144,7 +144,7 @@
 
 			    	<c:forEach var="Client" items="${listeClient}">
 
-							<option><c:out value="${Client.idClient}"/></option>
+							<option><c:out value="${Client.idPersonne}"/></option>
 
 					</c:forEach>
 
