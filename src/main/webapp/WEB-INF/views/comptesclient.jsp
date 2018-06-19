@@ -78,8 +78,6 @@
 
 						<tr>
 
-							<th>Id Compte</th>
-
 							<th>Numero de compte</th>
 
 							<th>Type de compte</th>
@@ -97,9 +95,6 @@
 						<c:forEach var="compte" items="${client.comptes}">
 
 							<tr>
-
-								<th scope="row"><c:out
-										value="${compte.idCompte}" /></th>
 
 								<th><c:out value="${compte.numeroDeCompte}" /></th>
 
