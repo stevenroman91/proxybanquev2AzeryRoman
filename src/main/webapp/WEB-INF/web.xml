@@ -20,6 +20,15 @@
 		<servlet-name>VirementServlet</servlet-name>
 		<servlet-class>presentation.VirementServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ModifierClientServlet</servlet-name>
+		<servlet-class>presentation.ModifierClientServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ConsulterClientServlet</servlet-name>
+		<servlet-class>presentation.ConsulterClientServlet</servlet-class>
+	</servlet>
+	
 	<filter>
 		<filter-name>mon.filtre.http</filter-name>
 		<filter-class>presentation.MonFiltreHttp</filter-class>
@@ -45,6 +54,15 @@
 		<servlet-name>VirementServlet</servlet-name>
 		<url-pattern>/virement</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModifierClientServlet</servlet-name>
+		<url-pattern>/modifier</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ConsulterClientServlet</servlet-name>
+		<url-pattern>/consulter</url-pattern>
+	</servlet-mapping>
+	
 	<filter-mapping>
 		<filter-name>mon.filtre.http</filter-name>
 		<url-pattern>/accueil</url-pattern>

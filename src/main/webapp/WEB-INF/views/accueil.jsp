@@ -108,11 +108,11 @@
 
 	</div>
 
-
+	<c:url value="/" var="chemin" />
 
 	<br>
 
-		<form method="Post" class="form-inline form-group container">
+		<form action="${chemin}modifier" method="post" class="form-inline form-group container">
 
    				<label for="idClient">ID Client </label>
 
@@ -126,7 +126,7 @@
 
 			    </select>
 
-				<button type="submit" class="btn btn-success"> Modifier profil Client  </button>
+				<button name="but" type="submit" class="btn btn-success"> Modifier profil Client  </button>
 
  		</form>
 
@@ -136,7 +136,7 @@
 
 
 
-		<form action="afficherCompteClient" method="Post" class="form-inline form-group container">
+		<form action="${chemin}consulter" method="post" class="form-inline form-group container">
 
    				<label for="idClient2">ID Client </label>
 
@@ -158,7 +158,7 @@
 
  		<br>
 
-		<form action="Virement" method="Post" class="form-inline form-group container">
+		<form action="${chemin}virement" method="Post" class="form-inline form-group container">
 
 				<button type="submit" class="btn btn-success">Effectuer Virement</button>
 
