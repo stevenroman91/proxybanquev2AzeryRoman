@@ -15,6 +15,8 @@ public interface IDao {
 	public void delete(int id);
 	public Client FindById(int id);
 	public ConseillerClientele FindByLogin(String login);
+	public Compte FindCompteByNbCompte(int numeroDeCompte);
+	
 	
 	public List<Client> FindAll();
 	public List<Client> FindClients(ConseillerClientele cc);

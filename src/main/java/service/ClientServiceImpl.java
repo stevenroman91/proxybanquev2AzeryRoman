@@ -99,5 +99,10 @@ public class ClientServiceImpl implements ClientService {
 		
 	}
 
+	@Override
+	public Compte getCompteByNbCompte(int numeroDeCompte) {
+		return dao.FindCompteByNbCompte(numeroDeCompte);
+	}
+
 
 }

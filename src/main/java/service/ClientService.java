@@ -112,4 +112,6 @@ public interface ClientService {
 	 *            montant du virement
 	 */
 	public void virementCompteaCompte(Compte c1, Compte c2, double mt);
+	
+	public Compte getCompteByNbCompte(int numeroDeCompte);
 }

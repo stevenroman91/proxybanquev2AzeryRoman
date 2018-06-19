@@ -123,7 +123,7 @@
 
 
 
-			<form action="SauvegardeVirementServlet" method="Post">
+			<form  method="post">
 
 
 

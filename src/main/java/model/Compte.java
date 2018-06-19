@@ -101,12 +101,14 @@ public abstract class Compte {
 		this.typeDeCompte = typeDeCompte;
 	}
 	
+	
 	// ---------- Reecriture de la methode toString
 	
 	@Override
 	public String toString() {
-		return "Compte [numeroDeCompte=" + numeroDeCompte + ", solde=" + solde + ", dateOuvertureCompte="
-				+ dateOuvertureCompte + "]";
+		return "Compte [numeroDeCompte=" + numeroDeCompte + ", solde=" + solde + ", titulaireduCompte="
+				+ titulaireduCompte + ", dateOuvertureCompte=" + dateOuvertureCompte + ", carte=" + carte
+				+ ", typeDeCompte=" + typeDeCompte + ", idCompte=" + idCompte + "]";
 	}
 	
 }
