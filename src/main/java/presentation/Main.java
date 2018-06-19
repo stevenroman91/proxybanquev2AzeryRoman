@@ -14,8 +14,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		ClientService service = new ClientServiceImpl();
 		ConseillerClientele cc=service.getCCByLogin("cr7");
-		Client c = service.getValidatedClient(1);
-		List<Compte> listecomptes = service.getComptes(c);
+		List<Compte> listecomptes = service.getdAllComptes(cc);
 		System.out.println(listecomptes);
 		//request.setAttribute("client", c);
 		//this.getServletContext().getRequestDispatcher("/WEB-INF/views/comptesclient.jsp").forward(request, response);

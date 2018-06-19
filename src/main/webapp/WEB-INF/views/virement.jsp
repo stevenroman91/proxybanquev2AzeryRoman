@@ -60,19 +60,10 @@
 
 
 
-		<!-- Liste des comptes du client -->
+		<!-- Liste de tous les comptes -->
 
 		<div class="panel panel-default">
 
-			<div class="panel-heading">
-
-				Liste des comptes de:
-
-				<c:out value="${client.prenom}" />
-
-				<c:out value="${client.nom}" />
-
-			</div>
 
 			<div class="panel-body">
 
@@ -81,8 +72,6 @@
 					<thead>
 
 						<tr>
-
-							<th>Id Compte</th>
 
 							<th>Numero de compte</th>
 
@@ -98,43 +87,21 @@
 
 					<tbody>
 
-						<c:if test="${not empty client.compteEpargne}">
+						<c:forEach var="compte" items="${listeCompte}">
 
 							<tr>
 
-								<th scope="row"><c:out
-										value="${client.compteEpargne.idCompte}" /></th>
+								<th><c:out value="${compte.numeroDeCompte}" /></th>
 
-								<th><c:out value="${client.compteEpargne.numero}" /></th>
+								<th><c:out value="${compte.typeDeCompte}" /></th>
 
-								<th><c:out value="Compte Epargne" /></th>
+								<th><c:out value="${compte.dateOuvertureCompte}" /></th>
 
-								<th><c:out value="${client.compteEpargne.dateOuverture}" /></th>
-
-								<th><c:out value="${client.compteEpargne.solde} Euro" /></th>
-
+								<th><c:out value="${compte.solde} Euro" /></th>
+								
 							</tr>
 
-						</c:if>
-
-						<c:if test="${not empty client.compteCourant}">
-
-							<tr>
-
-								<th scope="row"><c:out
-										value="${client.compteEpargne.idCompte}" /></th>
-
-								<th><c:out value="${client.compteEpargne.numero}" /></th>
-
-								<th><c:out value="Compte Courant" /></th>
-
-								<th><c:out value="${client.compteCourant.dateOuverture}" /></th>
-
-								<th><c:out value="${client.compteCourant.solde} Euro" /></th>
-
-							</tr>
-
-						</c:if>
+						</c:forEach>
 
 					</tbody>
 
@@ -165,9 +132,9 @@
 					<label for="compteDebiteur">Id compte à débiter</label> <select
 						class="form-control" id="compteDebiteur" name="compteDebiteur">
 
-						<c:forEach var="Compte" items="${listeCompte}">
+						<c:forEach var="compte" items="${listeCompte}">
 
-							<option><c:out value="${Compte.numero}" /></option>
+							<option><c:out value="${compte.numeroDeCompte}" /></option>
 
 						</c:forEach>
 
@@ -186,7 +153,7 @@
 
 						<c:forEach var="Compte" items="${listeCompte}">
 
-							<option><c:out value="${Compte.numero}" /></option>
+							<option><c:out value="${Compte.numeroDeCompte}" /></option>
 
 						</c:forEach>
 

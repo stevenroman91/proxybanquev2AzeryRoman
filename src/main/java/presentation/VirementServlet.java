@@ -7,22 +7,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ConseillerClientele;
+import service.ClientService;
+import service.ClientServiceImpl;
+
 public class VirementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	ClientService service = new ClientServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String login= request.getSession().getAttribute("login").toString();
+		ConseillerClientele cc=service.getCCByLogin(login);
+		request.getSession().setAttribute("listeCompte", service.getdAllComptes(cc));
 		this.getServletContext().getRequestDispatcher("/WEB-INF/views/virement.jsp").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//final String login = request.getParameter("login");
-		//final String password = request.getParameter("pwd");
-		//ArticleService.getSingleton().create(title, description);
-		//response.sendRedirect(this.getServletContext().getContextPath() + "/accueil");
-		this.doGet(request, response);
+		
+		final int nbCD = Integer.parseInt(request.getParameter("compteDebiteur"));
+		final int nbCC = Integer.parseInt(request.getParameter("compteCrediteur"));
+		final double mt = Double.parseDouble(request.getParameter("montantVirement"));
+		
+		service.virementCompteaCompte(service., c2, mt);
+		
+		
+		/*final int id = Integer.parseInt(request.getParameter("idClient"));
+		response.sendRedirect(this.getServletContext().getContextPath() + "/editclient?idClient="+id);*/
 	}
 }

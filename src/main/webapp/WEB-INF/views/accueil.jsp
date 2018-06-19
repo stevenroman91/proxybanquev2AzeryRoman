@@ -87,9 +87,7 @@
 		  <tbody>
 
 		 	<c:forEach var="client" items="${listeClient}">
-
 				<tr>
-
 					<td scope="row"><c:out value="${client.idPersonne}"/></td>
 
 		     	 	<td><c:out value="${client.nom}"/></td>
@@ -158,7 +156,7 @@
 
  		<br>
 
-		<form action="${chemin}virement" method="Post" class="form-inline form-group container">
+		<form action="${chemin}virement" method="get" class="form-inline form-group container">
 
 				<button type="submit" class="btn btn-success">Effectuer Virement</button>
 

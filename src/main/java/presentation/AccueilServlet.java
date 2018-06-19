@@ -30,7 +30,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		response.sendRedirect(this.getServletContext().getContextPath() + "/virement");
+		//response.sendRedirect(this.getServletContext().getContextPath() + "/virement");
 	}
 	
 	
