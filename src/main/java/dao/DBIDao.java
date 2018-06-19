@@ -57,22 +57,22 @@ public class DBIDao extends DaoUtil implements IDao {
 		try {
 			cn = SeConnecter();
 			// Etape 3: Creer une requete
-			String sql = "UPDATE clients SET nom = ?, prenom = ?, email = ?, telephone = ?,  WHERE idClient = ? ";
+			String sql = "UPDATE client SET nom = '"+nom+"', prenom = '"+prenom+"', email = '"+email+"', telephone = '"+telephone+"'  WHERE idPersonne = "+c.getIdPersonne()+" ";
 			st = cn.prepareStatement(sql);
-			st.setString(1, nom);
+			/*st.setString(1, nom);
 			st.setString(2, prenom);
 			st.setString(3, email);
 			st.setInt(4, telephone);
-			st.setInt(5, c.getIdPersonne());
+			st.setInt(5, c.getIdPersonne());*/
 			st.executeUpdate();
 			st.close();
 
-			String sql1 = "UPDATE adresses SET adresse = ?, codePostal = ?, ville = ?,  WHERE adresses.idClient = ? ";
+			String sql1 = "UPDATE adresses SET adresse = '"+c.getAdresse().getAdresse()+"', codePostal = '"+c.getAdresse().getCodePostal()+"', ville = '"+c.getAdresse().getVille()+"'  WHERE adresses.idClient = "+c.getIdPersonne()+" ";
 			st = cn.prepareStatement(sql1);
-			st.setString(1, c.getAdresse().getAdresse());
+			/*st.setString(1, c.getAdresse().getAdresse());
 			st.setInt(2, c.getAdresse().getCodePostal());
 			st.setString(3, c.getAdresse().getVille());
-			st.setInt(4, c.getIdPersonne());
+			st.setInt(4, c.getIdPersonne());*/
 			st.executeUpdate();
 
 			// Etape 4
@@ -134,9 +134,9 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM clients where idClient = ?";
+			String sql = "SELECT * FROM client where idPersonne = '" + id + "'";
 			prepst = cn.prepareStatement(sql);
-			prepst.setInt(1, id);
+			//prepst.setInt(1, id);
 			// Etape 4
 			rs = prepst.executeQuery(sql);
 			cn.commit();
@@ -145,7 +145,25 @@ public class DBIDao extends DaoUtil implements IDao {
 			String nom = rs.getString(2);
 			String prenom = rs.getString(3);
 			String email = rs.getString(4);
-			Client c = new Client(nom, prenom, email);
+			int telephone = rs.getInt(5);
+			int idad = rs.getInt(6);
+			
+			prepst.close();
+			rs.close();
+			
+			String sql1 = "SELECT * FROM adresses where idClient = '" + idad + "'";
+			prepst = cn.prepareStatement(sql1);
+			rs = prepst.executeQuery(sql1);
+			cn.commit();
+			rs.next(); // on aurait pu faire un while
+			int i2 = rs.getInt(1);
+			String adresse = rs.getString(2);
+			int codePostal = rs.getInt(3);
+			String ville = rs.getString(4);
+			
+			Adresse adresses = new Adresse(i2, adresse, codePostal, ville);
+			
+			Client c = new Client(nom, prenom, telephone, adresses, email);
 			c.setIdPersonne(i);
 			return c;
 

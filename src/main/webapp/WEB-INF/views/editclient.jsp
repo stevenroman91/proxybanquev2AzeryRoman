@@ -60,15 +60,15 @@
 
 		<div class="container">
 
-			<form class="form-group row" action="SauvegardeClientServlet" method="Post">
+			<form class="form-group row" method="post">
 
-				
+				<input type="hidden" name="idPersonne" value="${client.idPersonne}">
 
 					<label for="nomClient" class="col-sm-2 col-form-label">Nom</label>
 
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="nomClient" name="nomClient"
+						<input value="${client.nom}" type="text" class="form-control" id="nomClient" name="nomClient"
 
 							placeholder="nom">
 
@@ -84,7 +84,7 @@
 
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="prenomClient" name="prenomClient"
+						<input value="${client.prenom}" type="text" class="form-control" id="prenomClient" name="prenomClient"
 
 							placeholder="prenom">
 
@@ -100,7 +100,7 @@
 
 					<div class="col-sm-10">
 
-						<input type="email" class="form-control" id="emailClient" name="emailClient"
+						<input value="${client.email}" type="email" class="form-control" id="emailClient" name="emailClient"
 
 							placeholder="mail@domain.com">
 
@@ -116,7 +116,7 @@
 
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="adresseClient" name="adresseClient"
+						<input value="${client.adresse.adresse}" type="text" class="form-control" id="adresseClient" name="adresseClient"
 
 							placeholder="ex:13 rue gambetta">
 
@@ -130,7 +130,7 @@
 
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="nomClient" name="nomClient"
+						<input value="${client.adresse.codePostal}" type="text" class="form-control" id="cpClient" name="cpClient"
 
 							placeholder="ex:75000">
 
@@ -146,7 +146,7 @@
 
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="villeClient" name="villeClient"
+						<input value="${client.adresse.ville}" type="text" class="form-control" id="villeClient" name="villeClient"
 
 							placeholder="ex:Paris">
 
@@ -162,7 +162,7 @@
 
 					<div class="col-sm-10">
 
-						<input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" class="form-control" id="telClient" name="telClient"
+						<input value="${client.telephone}" type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" class="form-control" id="telClient" name="telClient"
 
 							placeholder="ex:0612345678">
 

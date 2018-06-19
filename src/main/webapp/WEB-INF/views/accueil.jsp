@@ -118,9 +118,9 @@
 
    				<select class="form-control" name="idClient" id="idClient">
 
-			    	<c:forEach var="Client" items="${listeClient}">
+			    	<c:forEach var="client" items="${listeClient}">
 
-							<option><c:out value="${Client.idPersonne}"/></option>
+							<option value="${client.idPersonne}"><c:out value="${client.idPersonne}"/></option>
 
 					</c:forEach>
 
@@ -142,9 +142,9 @@
 
    				<select class="form-control" name="idClient" id="idClient2">
 
-			    	<c:forEach var="Client" items="${listeClient}">
+			    	<c:forEach var="client" items="${listeClient}">
 
-							<option><c:out value="${Client.idPersonne}"/></option>
+							<option value="${client.idPersonne}"><c:out value="${client.idPersonne}"/></option>
 
 					</c:forEach>
 

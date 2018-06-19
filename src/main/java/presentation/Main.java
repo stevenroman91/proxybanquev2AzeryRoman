@@ -14,7 +14,9 @@ public class Main {
 		ClientService service = new ClientServiceImpl();
 		ConseillerClientele cc=service.getCCByLogin("cr7");
 		List<Client> list = service.getClients(cc);
-		System.out.println(list);
+		int telephone=464848454;
+		
+		service.updateClient(service.getValidatedClient(1), service.getValidatedClient(1).getNom(), service.getValidatedClient(1).getPrenom(), service.getValidatedClient(1).getEmail(), telephone, service.getValidatedClient(1).getAdresse());
 	}
 
 }

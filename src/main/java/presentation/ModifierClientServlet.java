@@ -23,6 +23,6 @@ public class ModifierClientServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		final int id = Integer.parseInt(request.getParameter("idClient"));
-		response.sendRedirect(this.getServletContext().getContextPath() + "/editclient");
+		response.sendRedirect(this.getServletContext().getContextPath() + "/editclient?idClient="+id);
 	}
 }
