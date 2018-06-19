@@ -48,11 +48,7 @@
 
 		<p>
 
-			Bienvenue
-
-			<c:out value="${conseillerClientele.nom}" />
-
-			dans votre espace ProxyBanque
+			Bienvenue dans votre espace ProxyBanque
 
 		</p>
 
@@ -98,43 +94,25 @@
 
 					<tbody>
 
-						<c:if test="${not empty client.compteEpargne}">
+						<c:forEach var="compte" items="${client.comptes}">
 
 							<tr>
 
 								<th scope="row"><c:out
-										value="${client.compteEpargne.idCompte}" /></th>
+										value="${compte.idCompte}" /></th>
 
-								<th><c:out value="${client.compteEpargne.numero}" /></th>
+								<th><c:out value="${compte.numeroDeCompte}" /></th>
 
-								<th><c:out value="Compte Epargne" /></th>
+								<th><c:out value="${compte.typeDeCompte}" /></th>
 
-								<th><c:out value="${client.compteEpargne.dateOuverture}" /></th>
+								<th><c:out value="${compte.dateOuvertureCompte}" /></th>
 
-								<th><c:out value="${client.compteEpargne.solde} Euro" /></th>
-
-							</tr>
-
-						</c:if>
-
-						<c:if test="${not empty client.compteCourant}">
-
-							<tr>
-
-								<th scope="row"><c:out
-										value="${client.compteEpargne.idCompte}" /></th>
-
-								<th><c:out value="${client.compteEpargne.numero}" /></th>
-
-								<th><c:out value="Compte Courant" /></th>
-
-								<th><c:out value="${client.compteCourant.dateOuverture}" /></th>
-
-								<th><c:out value="${client.compteCourant.solde} Euro" /></th>
+								<th><c:out value="${compte.solde} Euro" /></th>
 
 							</tr>
 
-						</c:if>
+						</c:forEach>
+
 
 					</tbody>
 

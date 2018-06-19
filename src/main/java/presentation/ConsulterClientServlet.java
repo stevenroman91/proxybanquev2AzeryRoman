@@ -21,7 +21,8 @@ public class ConsulterClientServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		response.sendRedirect(this.getServletContext().getContextPath() + "/comptesclient");
+		final int id = Integer.parseInt(request.getParameter("idClient"));
+		response.sendRedirect(this.getServletContext().getContextPath() + "/comptesclient?idClient="+id);
+		//response.sendRedirect(this.getServletContext().getContextPath() + "/editclient?idClient="+id);
 	}
 }

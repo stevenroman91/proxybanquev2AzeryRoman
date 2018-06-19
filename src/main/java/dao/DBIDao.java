@@ -161,10 +161,52 @@ public class DBIDao extends DaoUtil implements IDao {
 			int codePostal = rs.getInt(3);
 			String ville = rs.getString(4);
 			
+			prepst.close();
+			rs.close();
+			
+			String sql2 = "SELECT * FROM comptecourant where idClient = '" + id + "'";
+			prepst = cn.prepareStatement(sql2);
+			rs = prepst.executeQuery(sql2);
+			cn.commit();
+			rs.next(); // on aurait pu faire un while
+			int i3 = rs.getInt(1);
+			double solde = rs.getDouble(2);
+			double decouvert = rs.getDouble(3);
+			boolean typeDeCompte = rs.getBoolean(4);
+			String dateOuv = rs.getString(5);
+
+			CompteCourant cc = new CompteCourant(i3, dateOuv, decouvert);
+			cc.setSolde(solde);
+			cc.setTypeDeCompte(typeDeCompte);
+			
+			List<Compte> liste = new ArrayList<Compte>();
+			liste.add(cc);
+			
+			prepst.close();
+			rs.close();
+			
+			String sql3 = "SELECT * FROM compteepargne where idClient = '" + id + "'";
+			prepst = cn.prepareStatement(sql3);
+			rs = prepst.executeQuery(sql3);
+			cn.commit();
+			rs.next(); // on aurait pu faire un while
+			i3 = rs.getInt(1);
+			solde = rs.getDouble(2);
+			double taux = rs.getDouble(4);
+			typeDeCompte = rs.getBoolean(3);
+			dateOuv = rs.getString(5);
+			
+			CompteEpargne ce = new CompteEpargne(i3, dateOuv, taux);
+			ce.setSolde(solde);
+			ce.setTypeDeCompte(typeDeCompte);
+			
+			liste.add(ce);
+			
 			Adresse adresses = new Adresse(i2, adresse, codePostal, ville);
 			
 			Client c = new Client(nom, prenom, telephone, adresses, email);
 			c.setIdPersonne(i);
+			c.setComptes(liste);
 			return c;
 
 		} catch (SQLException | ClassNotFoundException e) {
@@ -345,39 +387,39 @@ public class DBIDao extends DaoUtil implements IDao {
 			cn = SeConnecter();
 
 			// Etape 3: Creer une requete
-			String sql = "SELECT * FROM compteCourant WHERE compteCourant.idClient = ?";
+			String sql = "SELECT * FROM comptecourant WHERE compteCourant.idClient = ?";
 			prepst = cn.prepareStatement(sql);
 			prepst.setInt(1, c.getIdPersonne());
 			// Etape 4
 			rs = prepst.executeQuery();
 			cn.commit();
 			while (rs.next()) {
-				int i = rs.getInt(1);
-				int numeroDeCompte = rs.getInt(2);
-				double solde = rs.getDouble(3);
-				String dateOuvertureCompte = rs.getString(4);
-				double decouvert = rs.getDouble(5);
+				boolean typeDeCompte = rs.getBoolean(4);
+				int numeroDeCompte = rs.getInt(1);
+				double solde = rs.getDouble(2);
+				String dateOuvertureCompte = rs.getString(5);
+				double decouvert = rs.getDouble(3);
 				CompteCourant cl = new CompteCourant(numeroDeCompte, dateOuvertureCompte, decouvert);
-				cl.setIdCompte(i);
-				cl.setNumeroDeCompte(numeroDeCompte);
+				cl.setSolde(solde);
+				cl.setTypeDeCompte(typeDeCompte);
 				list.add(cl);
 			} // on aurait pu faire un while
 
-			String sql1 = "SELECT * FROM compteEpargne WHERE compteEpargne.idClient = ?";
+			String sql1 = "SELECT * FROM compteepargne WHERE compteEpargne.idClient = ?";
 			prepst1 = cn.prepareStatement(sql1);
 			prepst1.setInt(1, c.getIdPersonne());
 			rs = prepst1.executeQuery();
 			cn.commit();
 
 			while (rs.next()) {
-				int i = rs.getInt(1);
-				int numeroDeCompte = rs.getInt(2);
-				double solde = rs.getDouble(3);
-				String dateOuvertureCompte = rs.getString(4);
-				double taux = rs.getDouble(5);
+				boolean typeDeCompte = rs.getBoolean(4);
+				int numeroDeCompte = rs.getInt(1);
+				double solde = rs.getDouble(2);
+				String dateOuvertureCompte = rs.getString(5);
+				double taux = rs.getDouble(4);
 				CompteEpargne cl = new CompteEpargne(numeroDeCompte, dateOuvertureCompte, taux);
-				cl.setIdCompte(i);
-				cl.setNumeroDeCompte(numeroDeCompte);
+				cl.setTypeDeCompte(typeDeCompte);
+				cl.setSolde(solde);
 				list.add(cl);
 			}
 

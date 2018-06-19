@@ -1,12 +1,15 @@
 package presentation;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Client;
+import model.Compte;
 import service.ClientService;
 import service.ClientServiceImpl;
 
@@ -18,7 +21,10 @@ public class ComptesClientServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		final int id = Integer.parseInt(request.getParameter("idClient"));
-		request.setAttribute("client", service.getValidatedClient(id));
+		Client c = service.getValidatedClient(id);
+		List<Compte> listecomptes = service.getComptes(c);
+		c.setComptes(listecomptes);
+		request.setAttribute("client", c);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/views/comptesclient.jsp").forward(request, response);
 	}
 
