@@ -1,4 +1,5 @@
 package model;
+
 /**
  * 
  * @author Badr Azeri et Steven Roman
@@ -11,12 +12,16 @@ public class CompteEpargne extends Compte {
 	private double taux = 0.03;
 
 	// ---------- Constructeurs de la Classe Adresse
-	
+
 	/**
 	 * Constructeur du compteEpargne
-	 * @param numeroDeCompte numero de compte
-	 * @param dateOuvertureCompte date d'ouverture du compte
-	 * @param taux taux du compte
+	 * 
+	 * @param numeroDeCompte
+	 *            numero de compte
+	 * @param dateOuvertureCompte
+	 *            date d'ouverture du compte
+	 * @param taux
+	 *            taux du compte
 	 */
 	public CompteEpargne(int numeroDeCompte, String dateOuvertureCompte, double taux) {
 		super();
@@ -27,24 +32,29 @@ public class CompteEpargne extends Compte {
 	}
 
 	// ---------- Getters & Setters
-
+	/**
+	 * 
+	 * @return taux
+	 */
 	public double getTaux() {
 		return taux;
 	}
 
 	/**
 	 * 
-	 * @param taux taux d'interet du compte
+	 * @param taux
+	 *            taux d'interet du compte
 	 */
 
 	public void setTaux(double taux) {
 		this.taux = taux;
 	}
-	
+
 	// ---------- Methode toString
 
 	@Override
 	public String toString() {
-		return "CompteEpargne [numeroDeCompte = " + numeroDeCompte + " ; dateOuvertureCompte = "+dateOuvertureCompte + " ; taux=" + taux + "]";
+		return "CompteEpargne [numeroDeCompte = " + numeroDeCompte + " ; dateOuvertureCompte = " + dateOuvertureCompte
+				+ " ; taux=" + taux + "]";
 	}
 }

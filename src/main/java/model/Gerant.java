@@ -6,7 +6,7 @@ import java.util.Collection;
 
 /**
  * 
- * @author Quentin Ussunet et Steven Roman
+ * @author Badr AZERI et Steven ROMAN
  *
  */
 public class Gerant extends Personne {

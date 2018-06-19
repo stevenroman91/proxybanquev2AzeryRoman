@@ -1,7 +1,7 @@
 package model;
 /**
  * 
- * @author Quentin Ussunet et Steven Roman
+ * @author Badr AZERI et Steven ROMAN
  *
  */
 public class Placement {
@@ -15,8 +15,8 @@ public class Placement {
 	//---------- Constructeur de la Classe Placement
 	/**
 	 * Constructeur
-	 * @param montant montant du placement à effectuer
-	 * @param villeDePlacement ville où on veut investir
+	 * @param montant montant du placement ï¿½ effectuer
+	 * @param villeDePlacement ville oï¿½ on veut investir
 	 */
 	public Placement(double montant, String villeDePlacement) {
 		super();
@@ -53,7 +53,7 @@ public class Placement {
 	}
 	/**
 	 * 
-	 * @param villeDePlacement ville où on veut investir
+	 * @param villeDePlacement ville oï¿½ on veut investir
 	 */
 	public void setVilleDePlacement(String villeDePlacement) {
 		this.villeDePlacement = villeDePlacement;

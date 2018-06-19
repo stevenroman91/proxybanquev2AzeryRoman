@@ -1,9 +1,10 @@
 package service;
 /**
  * 
- * @author Quentin Ussunet et Steven Roman
+ * @author Badr Azeri et Steven Roman
  *
  */
+
 public class ErreurLogin extends Exception {
 	/**
 	 * constructeur

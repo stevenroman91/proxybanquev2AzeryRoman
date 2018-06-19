@@ -8,6 +8,11 @@ import model.Adresse;
 import model.Client;
 import model.Compte;
 import model.ConseillerClientele;
+/**
+ * 
+ * @author Badr Azeri et Steven Roman
+ *
+ */
 
 public class ClientServiceImpl implements ClientService {
 

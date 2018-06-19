@@ -39,8 +39,10 @@ public class Adresse {
 	}
 	
 	//---------- Getters & Setters
-	
-	
+	/**
+	 * 
+	 * @return id adresse
+	 */
 	public int getIdAdresse() {
 		return idAdresse;
 	}
@@ -54,6 +56,10 @@ public class Adresse {
 		this.idAdresse = idAdresse;
 	}
 	
+	/**
+	 * 
+	 * @return adresse
+	 */
 	public String getAdresse() {
 		return adresse;
 	}
@@ -66,6 +72,10 @@ public class Adresse {
 		this.adresse = adresse;
 	}
 
+	/**
+	 * 
+	 * @return code postal
+	 */
 	public int getCodePostal() {
 		return codePostal;
 	}
@@ -79,6 +89,10 @@ public class Adresse {
 		this.codePostal = codePostal;
 	}
 
+	/**
+	 * 
+	 * @return ville
+	 */
 	public String getVille() {
 		return ville;
 	}
@@ -96,7 +110,8 @@ public class Adresse {
 	//---------- Reecriture de la methode toString
 	
 	/**
-	 * La methode toString retourne le numero de rue, la rue, le code postal et la vile
+	 * La methode toString retourne le numero de rue, la rue, le code postal et la
+	 * ville
 	 */
 	
 	@Override

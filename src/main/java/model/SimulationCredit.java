@@ -1,7 +1,7 @@
 package model;
 /**
  * 
- * @author Quentin Ussunet et Steven Roman
+ * @author Badr AZERI et Steven ROMAN
  *
  */
 public class SimulationCredit {
@@ -18,7 +18,7 @@ public class SimulationCredit {
 	
 	/**
 	 * 
-	 * @param montant montant desiré
+	 * @param montant montant desirï¿½
 	 * @param taux taux d'interet du pret
 	 * @param duree duree en mois
 	 * @param typeDeCredit credit immobilier ou consomation
@@ -41,7 +41,7 @@ public class SimulationCredit {
 
 	/**
 	 * 
-	 * @param montant montant desiré
+	 * @param montant montant desirï¿½
 	 */
 	public void setMontant(double montant) {
 		this.montant = montant;
@@ -52,7 +52,7 @@ public class SimulationCredit {
 	}
 	/**
 	 * 
-	 * @param taux taux d'intérêt
+	 * @param taux taux d'intï¿½rï¿½t
 	 */
 	public void setTaux(double taux) {
 		this.taux = taux;
@@ -87,7 +87,7 @@ public class SimulationCredit {
 
 	/**
 	 * 
-	 * @param mensualite mensualité à rembouser
+	 * @param mensualite mensualitï¿½ ï¿½ rembouser
 	 */
 	public void setMensualite(double mensualite) {
 		this.mensualite = mensualite;

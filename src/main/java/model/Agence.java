@@ -1,7 +1,5 @@
 package model;
 
-
-
 /**
  * 
  * @author Badr Azeri et Steven Roman
